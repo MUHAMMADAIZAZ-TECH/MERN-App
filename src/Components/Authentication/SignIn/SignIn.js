@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import { TextInput,CustomButton } from '../../UI-Components/Index';
 import {Typography,CssBaseline,Box,Container} from '@mui/material';
 import "./SignIn.css"
+import { Link } from 'react-router-dom';
 const SignIn = ()=> {
   const [state,setState] = useState({
     Email:"",
@@ -42,7 +43,7 @@ const SignIn = ()=> {
               change={HanldeInput}
               variant="outlined"/>
           <br/>
-          <a href='#'>Forgot Password?</a>
+          <Link to='/ForgotPassword'>Forgot Password?</Link>
           <br/>
           <CustomButton 
               variant="contained" 
@@ -51,7 +52,7 @@ const SignIn = ()=> {
               fullWidth
               onClick={HandleClick}/>
           <br/>
-          <a href='#'>Sign Up</a>
+          <Link to="/SignUp">Sign Up</Link>
       </div>
       </Box>
     </Container>

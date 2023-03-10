@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import { TextInput,CustomButton } from '../../UI-Components/Index';
 import {Typography,CssBaseline,Box,Container,Grid} from '@mui/material';
 import "./SignUp.css"
+import { Link } from 'react-router-dom';
 const SignUp = ()=> {
   const [state,setState] = useState({
     FirstName:"",
@@ -18,14 +19,14 @@ const SignUp = ()=> {
   const HandleClick = () =>{
     console.log(state)
   }
-  const DataValidator = () =>{
+  // const DataValidator = () =>{
 
-  }
+  // }
   return (
     <React.Fragment>
     <CssBaseline />
     <Container maxWidth="sm">
-      <Box sx={{ height: '90vh' }} >
+      <Box sx={{ height: '80vh' }} >
       <div className='SignInContainer'>
       <Typography variant="h4" gutterBottom>
         Sign Up
@@ -95,7 +96,8 @@ const SignUp = ()=> {
               onClick={HandleClick}/>
         </Grid>
       </Grid>
-      <a href='#'>already have account?</a>
+      <br/>
+      <Link to="/">already have account?</Link>
       </div>
       </Box>
     </Container>
