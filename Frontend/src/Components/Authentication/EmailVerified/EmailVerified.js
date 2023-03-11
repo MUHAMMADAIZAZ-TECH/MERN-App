@@ -11,7 +11,6 @@ export default function EmailVerified() {
             try {
             const url = `http://localhost:8080/api/users/${params.id}/verify/${params.token}`;
             const {data} = await axios.get(url);
-            console.log(data);
             setvalidUrl(true)
             } catch (error) {
                 setvalidUrl(false)

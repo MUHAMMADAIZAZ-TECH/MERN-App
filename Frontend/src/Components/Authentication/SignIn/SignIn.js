@@ -3,7 +3,7 @@ import axios from 'axios';
 import { TextInput,CustomButton } from '../../UI-Components/Index';
 import {Typography,CssBaseline,Box,Container} from '@mui/material';
 import "./SignIn.css"
-import { Link,useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 const SignIn = ()=> {
   const [state,setState] = useState({
     email:"",
@@ -11,7 +11,7 @@ const SignIn = ()=> {
   })
   const [error,seterror] = useState("")
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const HanldeInput = (e)=>{
     setState({
       ...state,[e.target.name]:e.target.value
@@ -23,7 +23,8 @@ const SignIn = ()=> {
       const {data:res}= await axios.post(url,state);
       localStorage.setItem("token",res.data)
       localStorage.setItem("UserData",JSON.stringify(res.userData))
-      navigate("/")
+      window.location = "/";
+      // navigate("/")
     } catch (error) {
       if(error.response && 
         error.response.status>= 400 &&

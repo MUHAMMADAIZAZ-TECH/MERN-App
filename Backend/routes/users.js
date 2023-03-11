@@ -8,7 +8,6 @@ const token = require("../Models/token");
 
 
 router.post("/",async(req,res)=>{
-    console.log(validate(req.body))
     try{
         const {error} = validate(req.body);
         if(error){

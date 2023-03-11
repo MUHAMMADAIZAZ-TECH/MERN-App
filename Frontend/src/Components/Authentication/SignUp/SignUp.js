@@ -3,7 +3,7 @@ import axios from "axios";
 import { TextInput,CustomButton } from '../../UI-Components/Index';
 import {Typography,CssBaseline,Box,Container,Grid} from '@mui/material';
 import "./SignUp.css"
-import { Link,useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 const SignUp = ()=> {
   const [state,setState] = useState({
     firstName:"",
@@ -13,7 +13,7 @@ const SignUp = ()=> {
   })
   const [error,seterror] = useState("")
   const [msg,setmsg] = useState("")
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const HanldeInput = (e)=>{
     setState({
       ...state,[e.target.name]:e.target.value
