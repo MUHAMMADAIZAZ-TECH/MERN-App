@@ -1,10 +1,10 @@
 import './App.css';
-import { MovieSystem } from './Components/MovieSystem';
+import { System } from './Components/System';
 
 function App() {
   return (
     <div className="App">
-      <MovieSystem/>
+      <System/>
     </div>
   );
 }

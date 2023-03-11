@@ -22,8 +22,9 @@ const SignIn = ()=> {
       const url ="http://localhost:8080/api/auth";
       const {data:res}= await axios.post(url,state);
       localStorage.setItem("token",res.data)
-      console.log("Navigate To dashboard: Login Success")
-      // window.location("/Dashboard")
+      localStorage.setItem("UserData",JSON.stringify(res.userData))
+      console.log("Navigate To dashboard: Login Success",res.userData)
+      navigate("/Dashboard")
       console.log(res.Message)
     } catch (error) {
       if(error.response && 

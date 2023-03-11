@@ -7,7 +7,7 @@ import { Route,Routes } from 'react-router-dom';
 function Auth() {
     return (
         <Routes>
-            <Route path='/SignIn' element={<SignIn/>}/>
+            <Route path='/' element={<SignIn/>}/>
             <Route path='/SignUp' element={<SignUp/>}/>
             <Route path='/ForgotPassword' element={<ForgotPassword/>}/>
         </Routes>
