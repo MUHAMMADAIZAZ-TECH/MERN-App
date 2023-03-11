@@ -6,7 +6,7 @@ export default function UserDashboard() {
   const handleLogout = () =>{
     localStorage.removeItem("token");
     localStorage.removeItem("UserData");
-    navigate("/")
+    navigate("/SignIn")
   }
   return (
     <div>

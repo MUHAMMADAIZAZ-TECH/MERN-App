@@ -1,6 +1,12 @@
 const router = require("express").Router();
 const {User,validate} = require("../Models/user");
 const bcrypt = require("bcrypt");
+const Token = require("../Models/token");
+const sendEmail = require("../Utills/sendEmail");
+const crypto = require("crypto");
+const token = require("../Models/token");
+
+
 router.post("/",async(req,res)=>{
     console.log(validate(req.body))
     try{
@@ -10,7 +16,7 @@ router.post("/",async(req,res)=>{
                 Message:error.details[0].message
             })
         }
-        const user = await User.findOne({
+        let user = await User.findOne({
             email:req.body.email
         });
         if(user){
@@ -21,12 +27,19 @@ router.post("/",async(req,res)=>{
         const salt = await bcrypt.genSalt(Number(process.env.SALT))
         const hashPassword = await bcrypt.hash(req.body.password,salt);
 
-        await new User({
+        user = await new User({
             ...req.body,password:hashPassword
         }).save();
+
+        const token = await new Token({
+            userId:user._id,
+            token:crypto.randomBytes(32).toString("hex")
+        }).save()
        
+        const url = `${process.env.BASE_URL}users/${user.id}/verify/${token.token}`;
+        await sendEmail(user.email,"verify Email",url);
         res.status(201).send({
-            Message:"User created succesfully"
+            Message:"An Email Sent to your account please verify"
         })
     }catch(error){
         res.status(500).send({
@@ -35,4 +48,26 @@ router.post("/",async(req,res)=>{
 
     }
 })
+
+router.get("/:id/verify/:token/", async (req, res) => {
+	try {
+		const user = await User.findOne({ _id: req.params.id });
+		if (!user) return res.status(400).send({ Message: "Invalid link" });
+
+		const token = await Token.findOne({
+			userId: user._id,
+			token: req.params.token,
+		});
+		if (!token) return res.status(400).send({ Message: "Invalid link" });
+
+		await User.updateOne({ _id: user._id, verified: true });
+        await token.deleteOne();
+       
+        res.status(200).send({ Message: "Email verified successfully" });
+		
+		
+	} catch (error) {
+		res.status(500).send({ Message: "Internal Server Error" });
+	}
+});
 module.exports = router;

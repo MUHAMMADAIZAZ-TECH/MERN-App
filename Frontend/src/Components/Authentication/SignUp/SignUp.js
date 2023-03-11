@@ -12,6 +12,7 @@ const SignUp = ()=> {
     password:"",
   })
   const [error,seterror] = useState("")
+  const [msg,setmsg] = useState("")
   const navigate = useNavigate();
   const HanldeInput = (e)=>{
     setState({
@@ -22,9 +23,9 @@ const SignUp = ()=> {
     try {
       const url ="http://localhost:8080/api/users";
       const {data:res}= await axios.post(url,state);
-      console.log("Navigate To Sign In: User Registerd Successfully")
-       navigate("/SignIn")
-      console.log(res.Message)
+      setmsg(res.Message)
+      // console.log("Navigate To Sign In: User Registerd Successfully")
+      
     } catch (error) {
       if(error.response && 
         error.response.status>= 400 &&
@@ -102,8 +103,9 @@ const SignUp = ()=> {
         </Grid>
       </Grid>
       {error && <div>Error:{error}</div>}
+      {msg && <div>Message:{msg}</div>}
       <br/>
-      <Link to="/">already have account?</Link>
+      <Link to="/SignIn">already have account?</Link>
       </div>
       </Box>
     </Container>

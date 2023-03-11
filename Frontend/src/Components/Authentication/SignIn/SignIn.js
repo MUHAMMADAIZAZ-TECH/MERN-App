@@ -23,9 +23,7 @@ const SignIn = ()=> {
       const {data:res}= await axios.post(url,state);
       localStorage.setItem("token",res.data)
       localStorage.setItem("UserData",JSON.stringify(res.userData))
-      console.log("Navigate To dashboard: Login Success",res.userData)
       navigate("/Dashboard")
-      console.log(res.Message)
     } catch (error) {
       if(error.response && 
         error.response.status>= 400 &&
