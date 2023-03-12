@@ -63,7 +63,7 @@ const SignIn = ()=> {
               variant="outlined"/>
           <br/>
           {error && <div>Error:{error}</div>}
-          <Link to='/ForgotPassword'>Forgot Password?</Link>
+          <Link to='/forgot-password'>Forgot Password?</Link>
           <br/>
           <CustomButton 
               variant="contained" 

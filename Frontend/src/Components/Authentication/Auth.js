@@ -4,6 +4,7 @@ import SignUp from './SignUp/SignUp';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
 import { Route,Routes } from 'react-router-dom';
 import EmailVerified from './EmailVerified/EmailVerified';
+import PasswordReset from './PasswordReset/PasswordReset';
 function Auth() {
     return (
         <Routes>
@@ -11,6 +12,8 @@ function Auth() {
             <Route path='/SignUp' element={<SignUp/>}/>
             <Route path='/ForgotPassword' element={<ForgotPassword/>}/>
             <Route path="/users/:id/verify/:token" element={<EmailVerified/>}/>
+            <Route path="/forgot-password" element={<ForgotPassword/>}/>
+            <Route path="/password-reset/:id/:token" element={<PasswordReset/>}/>
         </Routes>
     );
 }
