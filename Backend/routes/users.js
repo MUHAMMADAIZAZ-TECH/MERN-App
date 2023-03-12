@@ -4,8 +4,6 @@ const bcrypt = require("bcrypt");
 const Token = require("../Models/token");
 const sendEmail = require("../Utills/sendEmail");
 const crypto = require("crypto");
-const token = require("../Models/token");
-
 
 router.post("/",async(req,res)=>{
     try{

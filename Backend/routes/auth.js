@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const {User} = require("../Models/user");
-const joi = require("joi");
-const bcrypt = require("bcrypt");
 const Token = require("../Models/token");
-const sendEmail = require("../Utills/sendEmail");
 const crypto = require("crypto");
-const token = require("../Models/token");
+const sendEmail = require("../Utills/sendEmail");
+const bcrypt = require("bcrypt");
+const joi = require("joi");
+
 router.post("/",async(req,res)=>{
     try{
         const {error} = validate(req.body);
@@ -36,8 +36,8 @@ router.post("/",async(req,res)=>{
                 Message:"An Email is sent to your account please verify"
             })
         }
-        const Token = user.generateAuthToken();
-        res.status(200).send({data:Token,userData:user,Message:"Logged in successfully"})
+        const token = user.generateAuthToken();
+        res.status(200).send({data:token,userData:user,Message:"Logged in successfully"})
 
     }catch(error){
         res.status(500).send({Message:"Internal server error"
