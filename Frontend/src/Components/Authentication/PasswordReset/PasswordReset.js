@@ -21,8 +21,6 @@ export default function PasswordReset() {
           setmsg(res.Message)
           seterror("")
           window.location = "/SignIn"
-          // console.log("Navigate To Sign In: User Registerd Successfully")
-          
         } catch (error) {
           if(error.response && 
             error.response.status>= 400 &&
@@ -51,7 +49,7 @@ export default function PasswordReset() {
       <CssBaseline />
       <Container maxWidth="sm">
         <Box sx={{ height: '50vh' }} >
-        <div className='ForgotPasswordContainer'>
+        <div className='PasswordResetContainer'>
         <Typography variant="h4" gutterBottom>
           Enter New Password
         </Typography>

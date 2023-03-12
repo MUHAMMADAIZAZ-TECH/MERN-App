@@ -24,7 +24,6 @@ const SignIn = ()=> {
       localStorage.setItem("token",res.data)
       localStorage.setItem("UserData",JSON.stringify(res.userData))
       window.location = "/";
-      // navigate("/")
     } catch (error) {
       if(error.response && 
         error.response.status>= 400 &&
@@ -63,7 +62,7 @@ const SignIn = ()=> {
               variant="outlined"/>
           <br/>
           {error && <div>Error:{error}</div>}
-          <Link to='/forgot-password'>Forgot Password?</Link>
+          <Link to='/ForgotPassword'>Forgot Password?</Link>
           <br/>
           <CustomButton 
               variant="contained" 

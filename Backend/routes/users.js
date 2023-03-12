@@ -51,18 +51,13 @@ router.get("/:id/verify/:token/", async (req, res) => {
 		const user = await User.findOne({ _id: req.params.id });
 		if (!user) return res.status(400).send({ Message: "Invalid link" });
 
-		const token = await Token.findOne({
-			userId: user._id,
-			token: req.params.token,
-		});
+		const token = await Token.findOne({userId: user._id,token: req.params.token,});
 		if (!token) return res.status(400).send({ Message: "Invalid link" });
 
 		await user.updateOne({ _id: user._id, verified: true });
         await token.deleteOne();
        
         res.status(200).send({ Message: "Email verified successfully" });
-		
-		
 	} catch (error) {
 		res.status(500).send({ Message: "Internal Server Error" });
 	}

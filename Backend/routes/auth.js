@@ -23,18 +23,12 @@ router.post("/",async(req,res)=>{
                 userId:user._id
             })
             if(!token){
-                const token = await new Token({
-                    userId:user._id,
-                    token:crypto.randomBytes(32).toString("hex")
-                }).save()
-               
+                const token = await new Token({userId:user._id,token:crypto.randomBytes(32).toString("hex")}).save()
                 const url = `${process.env.BASE_URL}users/${user._id}/verify${token.token}`;
                 await sendEmail(user.email,"verify Email",url);
 
             }
-            return res.status(400).send({
-                Message:"An Email is sent to your account please verify"
-            })
+            return res.status(400).send({Message:"An Email is sent to your account please verify"})
         }
         const token = user.generateAuthToken();
         res.status(200).send({data:token,userData:user,Message:"Logged in successfully"})

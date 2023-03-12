@@ -46,22 +46,15 @@ router.get("/:id/:token",async(req,res)=>{
 //new password
 router.post("/:id/:token",async(req,res)=>{
     try {
-        
-        const passwordSchema = Joi.object({
-            password:Joi.string().required().label("Password")
-        })
-       
+        const passwordSchema = Joi.object({password:Joi.string().required().label("Password")})
         const {error} = passwordSchema.validate(res.body);
-      
         if(error)
         return res.status(400).send({Message:error.details[0].message})
         const user = await User.findOne({_id:req.params.id})
         if(!user)
         return res.status(400).send({Message:"Invalid link"})
-       
 
         const token = await Token.findOne({userId:user._id,token:req.params.token})
-
        
         if(!token) return res.status(400).send({Message:"Invalid link" })
         
@@ -74,9 +67,7 @@ router.post("/:id/:token",async(req,res)=>{
         await user.save();
         await token.deleteOne();
 
-        res.status(200).send({
-            Message:"Password reset successfully"
-        })
+        res.status(200).send({Message:"Password reset successfully"})
     } catch (error) {
          res.status(500).send({
             Message:"Internal server error"

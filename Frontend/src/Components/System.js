@@ -8,9 +8,8 @@ const token = localStorage.getItem("token")
   return (
     <Routes>
       <Route path='*' exact element={<Auth/>}/>
-       {token && <Route path='/' exact element={<UserDashboard/>}/>}
-       <Route path="/" exact element={<Navigate replace to="/SignIn" />} />
-      <Route path='/users/:id/verify/:token' exact element={<EmailVerified/>}/>
+      {token && <Route path='/' exact element={<UserDashboard/>}/>}
+      <Route path="/" exact element={<Navigate replace to="/SignIn"/>} />
     </Routes>
   )
 }
